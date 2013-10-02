@@ -1,0 +1,11 @@
+*.pyc
+*~
+.idea
+settings_local.py
+.vagrant
+.DS_Store
+barista/media/files
+.sass-cache
+barista/media/admin
+bin/push_server.pid
+*.sublime-workspace
