@@ -18,6 +18,7 @@ django-celery==3.0.11
 celery==3.0.12
 redis
 kombu==2.4.7
+flask
 git+git://github.com/kylemacfarlane/django-cb-storage-s3.git#egg=django-cb-storage-s3
 git+git://github.com/kylemacfarlane/django-cb-thumbnail.git#egg=django-cb-thumbnail
 git+git://github.com/carljm/django-markitup.git#egg=django-markitup
