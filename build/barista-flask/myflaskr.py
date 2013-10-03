@@ -1,3 +1,4 @@
+__author__ = 'snn'
 # all the imports
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
@@ -6,15 +7,12 @@ from contextlib import closing
 from settings import Config
 # the app itself
 
-app = Flask(__name__)
 # Configure from an object
+app = Flask(__name__)
 app.config.from_object(Config)
 
 def connect_db():
     return sqlite3.connect(app.config['DATABASE'])
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
 
 def init_db():
     with closing(connect_db()) as db:
@@ -32,7 +30,7 @@ def teardown_request(exception):
     if db is not None:
         db.close()
 
-@app.route('cilibom')
+@app.route('/cilibom')
 def cilibom():
     return "HELLO"
 
@@ -71,3 +69,7 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
+if __name__ == '__main__':
+    init_db()
+    app.run(host='0.0.0.0')
