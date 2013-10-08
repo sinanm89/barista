@@ -2,7 +2,7 @@ Vagrant::Config.run do |config|
     config.vm.define :barista do |config|
         config.vm.box = "barista"
         config.vm.forward_port 80, 8090
-        config.vm.forward_port 8000, 8002
+        config.vm.forward_port 8000, 5002
         config.vm.forward_port 5432, 5434
         config.vm.network :bridged
         config.vm.network :hostonly, "33.33.33.10"
