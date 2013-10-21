@@ -30,3 +30,4 @@ class Stream(models.Model):
 
     @property
     def duration(self):
+        return self.end_date - self.start_date
