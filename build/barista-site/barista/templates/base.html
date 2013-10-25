@@ -1,9 +1,69 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.min.css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+
     <title>Barista</title>
 </head>
 <body>
-<h1 style="align:center; margin:10px;">Not just for coffee anymore.</h1>
+<img src="{{ STATIC_URL }}/files/img/suratim2.JPG" class="img-circle pull-right">
+
+<h1 class="header">Not just for coffee anymore.</h1>
+<br/>
+<blockquote class="pull-right">
+  <p class="lead">“Cok guzel olucak.”</p>
+<small class="text-right"><b>Sinan Midillili</b> from <cite title="Source Title">Rahatol.com</cite></small>
+</blockquote>
+{#<br/>#}
+{#<br/>#}
+{#<table class="table">#}
+{#<p class='lead'>Example</p>#}
+{#    <tr>#}
+{#        <td>#</td>#}
+{#        <td>Link</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td>1</td>#}
+{#        <td>{{ STATIC_URL }}/bootstrap/examples/smth</td>#}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td>2</td>#}
+{#        <td>{{ STATIC_URL }}/bootstrap/examples/smth2</td>#}
+{#    </tr>#}
+{#</table>#}
+{##}
+{#<dl class="dl-horizontal">#}
+{#    <dt>Example 1</dt>  <dd>{{ STATIC_URL }}/bootstrap/examples/smth2</dd>#}
+{#</dl>#}
+{##}
+{#<pre>#}
+{#    &lt;p&gt;Bu kod isleri karmasik isler&lt;/p&gt;#}
+{#</pre>#}
+{##}
+{#<form>#}
+{#  <fieldset>#}
+{#    <legend>Legend</legend>#}
+{#    <label>Name</label>#}
+{#    <input type="text" placeholder="Your Name">#}
+{#    <span class="help-block">You can either place your full name or screen name.</span>#}
+{#    <label class="checkbox">#}
+{#      <input type="checkbox"> Remember me.#}
+{#    </label>#}
+{#    <button type="submit" class="btn">Submit</button>#}
+{#  </fieldset>#}
+{#</form>#}
+{##}
+{#<form class="form-inline">#}
+{#  <input type="text" class="input-small" placeholder="Email">#}
+{#  <input type="password" class="input-small" placeholder="Password">#}
+{#  <label class="checkbox">#}
+{#    <input type="checkbox"> Remember me#}
+{#  </label>#}
+{#  <button type="submit" class="btn">Sign in</button>#}
+{#</form>#}
+
 </body>
 </html>
