@@ -9,28 +9,24 @@ class GitException(Exception):
     pass
 
 
-class Kibrit(object):
+class GitRevision(object):
 
     @property
     def revision(self):
-        """ Get current revision.
-
-        :return str:
-
+        """
+        Get current revision
         """
         return self.init_repo()
 
     def __init__(self, path=None):
         """
-
+        Set and explicit path or try to find your own
         """
         self.path = path or os.path.join(os.path.realpath(os.path.dirname(".git"))) or getcwd()
 
     def init_repo(self):
-        """ Initialize self repo.
-
-        :return GitRepo:
-
+        """
+        The command to run and tag to return
         """
         try:
             self._tag = self.git('git describe --always --tags')
@@ -41,14 +37,9 @@ class Kibrit(object):
             print 'exception'
             notify_admins(exception="Git Exception")
 
-
-            # raise TypeError(e)
-
-
     def git(self, command=None, stderr=PIPE, stdout=PIPE, **kwargs):
         """
-        Run git command.
-        If it runs into an exception notify admins
+        Run a subprocess for the git command. Mail admins in the event of an error.
         """
         try:
             # POpen because check_output is 2.7 and Popen exists in 2.6.5
@@ -60,7 +51,6 @@ class Kibrit(object):
             notify_admins(exception="OS ERROR")
         stdout, stderr = [s.strip() for s in proc.communicate()] # noqa
         status = proc.returncode
-
         # DEBUG
         #
         # print "--------PATH----------"
@@ -69,13 +59,9 @@ class Kibrit(object):
         # print stdout
         # print status
         # print '------------------'
-
         if status:
             notify_admins(exception="Git Exception")
         return stdout
-
-
-
 
 
 def notify_admins(message=None, exception=None):

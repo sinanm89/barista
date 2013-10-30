@@ -109,7 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS += 'barista.kibrit.revision.context_processor',
+TEMPLATE_CONTEXT_PROCESSORS += 'barista.kibrit.context_processor.revision',
 
 ROOT_URLCONF = 'barista.urls'
 
