@@ -109,6 +109,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS += 'barista.kibrit.revision.context_processor',
+
 ROOT_URLCONF = 'barista.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
@@ -135,6 +137,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable the admin:
 
     'south',
+    'barista.kibrit',
     # 'cuddlybuddly.thumbnail',
     # 'cuddlybuddly.storage.s3',
 
