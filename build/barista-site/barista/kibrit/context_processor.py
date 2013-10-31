@@ -9,7 +9,7 @@ def revision(request):
     '''
     try:
         return {
-            'REVISION': GitRevision().revision,
+            'REVISION': '?'+GitRevision().revision,
         }
-    except :
+    except:
         return {'REVISION':''} # an empty string

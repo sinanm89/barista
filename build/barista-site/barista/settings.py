@@ -138,6 +138,7 @@ INSTALLED_APPS = (
 
     'south',
     'barista.kibrit',
+    'barista.restaurants',
     # 'cuddlybuddly.thumbnail',
     # 'cuddlybuddly.storage.s3',
 
