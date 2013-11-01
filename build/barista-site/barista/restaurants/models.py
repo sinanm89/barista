@@ -9,6 +9,7 @@ class Restaurant(models.Model):
     User Streams
     """
     name = models.CharField(_('Restaurant Name'), max_length = 255, default='Restaurant')
+    slug = models.CharField(_('Slug'), max_length = 255, default='Restaurant')
     # profile = models.ForeignKey("profiles.CustomUser", related_name="streams")
     category = models.ManyToManyField("RestaurantCategory", blank=True, null=True, verbose_name=_("Restaurant Categories"), related_name="category",
                 help_text="Check all that apply<br />")
@@ -22,7 +23,6 @@ class Restaurant(models.Model):
         verbose_name = _('Restaurant')
         verbose_name_plural = _('Restaurants')
         ordering = ["name"]
-
 
 class RestaurantCategory(models.Model):
     """

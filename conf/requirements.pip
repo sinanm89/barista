@@ -20,7 +20,7 @@ redis
 kombu==2.4.7
 flask==0.10.1
 bottle
-django-admin-bootstrapped
+django-suit
 dealer
 git+git://github.com/kylemacfarlane/django-cb-storage-s3.git#egg=django-cb-storage-s3
 git+git://github.com/kylemacfarlane/django-cb-thumbnail.git#egg=django-cb-thumbnail

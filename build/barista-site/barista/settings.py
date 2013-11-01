@@ -134,20 +134,15 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Uncomment the next line to enable the admin:
 
     'south',
+    'suit',
     'barista.kibrit',
     'barista.restaurants',
-    # 'cuddlybuddly.thumbnail',
-    # 'cuddlybuddly.storage.s3',
 
     'django_extensions',
     'django.contrib.admin',
-
     'django.contrib.admindocs',
-
-    # APPS GO HERE
 
 )
 

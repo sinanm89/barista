@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.contrib.sites.models import Site
 from barista.kibrit.base import GitRevision
 
 
@@ -9,7 +7,7 @@ def revision(request):
     '''
     try:
         return {
-            'REVISION': '?'+GitRevision().revision,
+            'REVISION': GitRevision().revision,
         }
     except:
         return {'REVISION':''} # an empty string

@@ -12,6 +12,7 @@ class Migration(SchemaMigration):
         db.create_table(u'restaurants_restaurant', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(default='Restaurant', max_length=255)),
+            ('slug', self.gf('django.db.models.fields.CharField')(default='Restaurant', max_length=255)),
             ('date_created', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime.now)),
             ('times_chosen', self.gf('django.db.models.fields.IntegerField')(default=0)),
         ))
@@ -53,6 +54,7 @@ class Migration(SchemaMigration):
             'date_created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'default': "'Restaurant'", 'max_length': '255'}),
+            'slug': ('django.db.models.fields.CharField', [], {'default': "'Restaurant'", 'max_length': '255'}),
             'times_chosen': ('django.db.models.fields.IntegerField', [], {'default': '0'})
         },
         u'restaurants.restaurantcategory': {
