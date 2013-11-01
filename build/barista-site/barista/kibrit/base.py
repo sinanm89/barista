@@ -1,11 +1,12 @@
 import os
 from subprocess import Popen, PIPE
+from django.core.cache import cache
 from django.core.mail import mail_admins, send_mail
 import sys
 from barista import settings
 from os import getcwd, name
 
-LEGACY_LISTING_CACHE_PREFIX = "kibrit_"
+# LEGACY_LISTING_CACHE_PREFIX = "kibrit_"
 
 class GitException(Exception):
     pass
@@ -13,19 +14,29 @@ class GitException(Exception):
 
 class GitRevision(object):
 
+    _tag = None
+
     @property
     def revision(self):
         """
         Get current revision
         """
-        return self.init_repo()
+        self.init_repo()
+        cache.set(self._tag, self._tag, 60)
+        return self._tag
 
     def __init__(self, path=None):
         """
         Set and explicit path or try to find your own
         """
-        self.path = path or self.find_git()
-
+        try:
+            cached_kibrit = cache.get(self._tag)
+        except Exception, err:
+            cached_kibrit = None
+        if cached_kibrit:
+            self._tag = cached_kibrit
+        else:
+            self.path = path or self.find_git()
 
     def init_repo(self):
         """
@@ -33,10 +44,9 @@ class GitRevision(object):
         """
         try:
             self._tag = self.git('git describe --always --tags')
-            return self._tag
-        except GitException:
-            # TODO: Logger
-            notify_admins(exception="Git Exception in init_repo()")
+        except Exception, err: # TODO: Logging mechanism
+            self._tag = ''
+            notify_admins(exception="Git Exception in init_repo() gave <%s>"%err)
 
     def git(self, command=None, stderr=PIPE, stdout=PIPE, **kwargs):
         """
@@ -48,8 +58,8 @@ class GitRevision(object):
                 command.split(), stderr=stderr, stdout=stdout,
                 close_fds=(name == 'posix'), cwd=self.path, **kwargs)
 
-        except GitException:
-            notify_admins(exception="Exception in git()")
+        except Exception, err:
+            notify_admins(exception="Exception in git() gave <%s>"%err)
         stdout, stderr = [s.strip() for s in proc.communicate()]
         status = proc.returncode
         if status:
@@ -66,8 +76,8 @@ class GitRevision(object):
         try:
             proc = Popen(command, stderr=PIPE, stdout=PIPE,
                          close_fds=(name == 'posix'), cwd=os.path.dirname(command[2]), **kwargs)
-        except:
-            notify_admins(exception="Exception in find_git()")
+        except Exception, err:
+            notify_admins(exception="Exception in find_git() gave <%s>"%err)
 
         output, error = [s.strip() for s in proc.communicate()]
         status = proc.returncode

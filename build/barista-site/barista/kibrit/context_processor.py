@@ -7,9 +7,10 @@ def revision(request):
     A context processor to add the "current site" to the current Context
     '''
     try:
-        return {
-            'REVISION': GitRevision(settings.KIBRIT_PATH).revision,
-            # 'REVISION': GitRevision(path="/home/vagrant/barista/src/barista").revision,
-        }
+        revision = GitRevision(settings.KIBRIT_PATH).revision,
     except:
-        return {'REVISION':''} # an empty string
+        revision = ''# an empty string
+    return {
+            'REVISION': str('?%s'%revision),
+            'TAG': revision,
+        }
