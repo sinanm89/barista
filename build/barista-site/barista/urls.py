@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', BaristaHomeView.as_view()),
     # url(r'^barista/', include('barista.foo.urls')),
 
-    url(r'^food/', include('barista.restaurants.urls', namespace="restaurants")),
+    url(r'^food/', include('barista.restaurants.urls', namespace="lunchtime")),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

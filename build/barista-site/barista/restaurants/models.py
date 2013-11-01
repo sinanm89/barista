@@ -6,23 +6,24 @@ from django.utils.translation import ugettext_lazy as _
 
 class Restaurant(models.Model):
     """
-    User Streams
+    Restaurants
     """
-    name = models.CharField(_('Restaurant Name'), max_length = 255, default='Restaurant')
-    slug = models.CharField(_('Slug'), max_length = 255, default='Restaurant')
-    # profile = models.ForeignKey("profiles.CustomUser", related_name="streams")
-    category = models.ManyToManyField("RestaurantCategory", blank=True, null=True, verbose_name=_("Restaurant Categories"), related_name="category",
-                help_text="Check all that apply<br />")
+    name = models.CharField(_('Restaurant Name'), max_length = 255, default="Restaurant")
+    slug = models.CharField(_('Slug'), max_length = 255, default="restaurant")
+    category = models.ManyToManyField("RestaurantCategory", blank=True, null=True,
+                                      verbose_name=_("Categories"),
+                                      related_name="category",
+                                      help_text="Check all that apply<br />")
     date_created = models.DateTimeField(_("Restaurant Date Created"), default=timezone.now)
     times_chosen = models.IntegerField(_("Times this category has been chosen"), default=0)
-
-    def __unicode__(self):
-        return smart_unicode(self.name)
 
     class Meta:
         verbose_name = _('Restaurant')
         verbose_name_plural = _('Restaurants')
         ordering = ["name"]
+
+    def __unicode__(self):
+        return smart_unicode(self.name)
 
 class RestaurantCategory(models.Model):
     """
@@ -34,8 +35,8 @@ class RestaurantCategory(models.Model):
     times_chosen = models.IntegerField(_("Times this category has been chosen"), default=0)
 
     class Meta:
-        verbose_name = _("Restaurant Category")
-        verbose_name_plural = _("")
+        verbose_name = _("Category")
+        verbose_name_plural = _("Categories")
         ordering = ["order", "-id"]
 
     def __unicode__(self):

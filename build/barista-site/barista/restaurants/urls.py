@@ -1,9 +1,9 @@
 from django.conf.urls import patterns, url
-from barista.restaurants.views import EligibleRestaurantsListView
+from barista.restaurants.views import EligibleRestaurantsListView, ResultView
 
 urlpatterns = patterns('',
                 url(r'^$', EligibleRestaurantsListView.as_view(), name='daily_restaurants'),
-                # url(r'^create/$', StreamCreateView.as_view(), name="create_stream"),
+                url(r'^results/$', ResultView.as_view(), name="results"),
                 #
                 # url(r'^search/$', StreamSearchPhotosListView.as_view(), name="stream_search_photos"),
                 # url(r'^search/photos/(?P<pk>[-\d]+)/$', SearchPhotosDetailView.as_view(), name="stream_search_photo_detail"),

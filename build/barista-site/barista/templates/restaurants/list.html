@@ -1,11 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-{% for restaurant in eligible_restaurants %}
-    {{ restaurant }}
-{% endfor %}
-</body>
-</html>
+{% extends "base.html" %}
+{% block body %}
+    <div class="span8 offset2">
+        <h3>Preferences?</h3>
+
+        <ul class="unstyled">
+            {% for restaurant in eligible_restaurants %}
+                <div class="span2">
+                    <li>
+                        <label for="{{ restaurant.slug }}" onclick="">
+                            <button class="btn btn-large btn-primary btn-block">
+                                <input class="" type="checkbox" id="{{ restaurant.slug }}" name="something" value="{{ restaurant.id }}">
+                                {{ restaurant.name }}
+                            </button>
+                        </label>
+                    </li>
+                    <br/>
+                </div>
+            {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
