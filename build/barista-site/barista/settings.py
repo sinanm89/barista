@@ -8,6 +8,9 @@ ADMINS = (
     ('Sinan Midillili', 'sinan@hipo.biz'),
 )
 
+DEFAULT_FROM_EMAIL = 'sinan@hipo.biz',
+SERVER_EMAIL = 'sinan@hipo.biz'
+
 MANAGERS = ADMINS
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
@@ -109,7 +112,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS += 'barista.kibrit.context_processor.revision',
 
 ROOT_URLCONF = 'barista.urls'
 
@@ -125,6 +127,13 @@ TEMPLATE_DIRS = (
     # 'django.template.loaders.app_directories.Loader',
 
 )
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
 
 
 INSTALLED_APPS = (
@@ -174,6 +183,12 @@ LOGGING = {
         },
     }
 }
+
+# kibrit context processor
+TEMPLATE_CONTEXT_PROCESSORS += 'barista.kibrit.context_processor.revision',
+# kibrit explicit .git directory path
+KIBRIT_PATH = '/home/vagrant/barista/src/barista/'
+
 
 try:
     from settings_local import *

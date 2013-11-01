@@ -1,9 +1,11 @@
 import os
 from subprocess import Popen, PIPE
-from django.core.mail import send_mail
+from django.core.mail import mail_admins, send_mail
+import sys
 from barista import settings
 from os import getcwd, name
 
+LEGACY_LISTING_CACHE_PREFIX = "kibrit_"
 
 class GitException(Exception):
     pass
@@ -22,7 +24,8 @@ class GitRevision(object):
         """
         Set and explicit path or try to find your own
         """
-        self.path = path or os.path.join(os.path.realpath(os.path.dirname(".git"))) or getcwd()
+        self.path = path or self.find_git()
+
 
     def init_repo(self):
         """
@@ -31,11 +34,9 @@ class GitRevision(object):
         try:
             self._tag = self.git('git describe --always --tags')
             return self._tag
-
         except GitException:
             # TODO: Logger
-            print 'exception'
-            notify_admins(exception="Git Exception")
+            notify_admins(exception="Git Exception in init_repo()")
 
     def git(self, command=None, stderr=PIPE, stdout=PIPE, **kwargs):
         """
@@ -47,30 +48,43 @@ class GitRevision(object):
                 command.split(), stderr=stderr, stdout=stdout,
                 close_fds=(name == 'posix'), cwd=self.path, **kwargs)
 
-        except OSError:
-            notify_admins(exception="OS ERROR")
-        stdout, stderr = [s.strip() for s in proc.communicate()] # noqa
+        except GitException:
+            notify_admins(exception="Exception in git()")
+        stdout, stderr = [s.strip() for s in proc.communicate()]
         status = proc.returncode
-        # DEBUG
-        #
-        # print "--------PATH----------"
-        # print self.path
-        # print '-----STDOUT------'
-        # print stdout
-        # print status
-        # print '------------------'
         if status:
             notify_admins(exception="Git Exception")
         return stdout
 
-
-def notify_admins(message=None, exception=None):
-    if not settings.DEBUG:
-        subject = "[Kibrit] Kibrit has failed."
-        message = message or "In project Something Kibrit has failed. Exception is : " + exception
-        from_mail = settings.ADMINS
-        to_mails = settings.ADMINS
+    def find_git(self, **kwargs):
+        """
+        Recursively finds a file directory named .git
+        """
+        command = "find -L ../src/ -type d -name .git".split()
+        command[2] = kwargs.get('path') or os.path.join(os.path.realpath(os.path.dirname(sys.argv[0])), '../src/')
+        command[6] = kwargs.get('pattern') or command[6]
         try:
-            send_mail(subject, message, from_mail, to_mails, fail_silently=True)
+            proc = Popen(command, stderr=PIPE, stdout=PIPE,
+                         close_fds=(name == 'posix'), cwd=os.path.dirname(command[2]), **kwargs)
         except:
-            pass
+            notify_admins(exception="Exception in find_git()")
+
+        output, error = [s.strip() for s in proc.communicate()]
+        status = proc.returncode
+        if status:
+            subject="[Kibrit] Couldn't find .git directory"
+            message="I couldn't find .git while trying to run %s I got status <%s> and error <%s> the output was <%s>"\
+                    %(command, status, error, output)
+            notify_admins(subject=subject,message=message)
+        return output
+
+def notify_admins(subject=None, message=None, exception=None):
+    # if not settings.DEBUG:
+    subject = subject or "[Kibrit] Kibrit has failed."
+    message = message or "In project Something Kibrit has failed. Exception is : <%s>" %exception or 'Not Available'
+    try:
+        # send_mail("B", "A", "sinanm89@gmail.com", ["sinanm89@gmail.com"], fail_silently=True)
+        mail_admins(subject, message, fail_silently=True)
+    except:
+        pass
+
