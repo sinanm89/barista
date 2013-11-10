@@ -146,7 +146,6 @@ INSTALLED_APPS = (
 
     'south',
     'suit',
-    'barista.kibrit',
     'barista.restaurants',
 
     'django_extensions',
@@ -184,9 +183,6 @@ LOGGING = {
     }
 }
 
-# kibrit context processor
-TEMPLATE_CONTEXT_PROCESSORS += 'barista.kibrit.context_processor.revision',
-# kibrit explicit .git directory path
 KIBRIT_PATH = '/home/vagrant/barista/src/barista/'
 
 

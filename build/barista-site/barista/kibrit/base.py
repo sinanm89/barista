@@ -6,11 +6,6 @@ import sys
 from barista import settings
 from os import getcwd, name
 
-# LEGACY_LISTING_CACHE_PREFIX = "kibrit_"
-
-class GitException(Exception):
-    pass
-
 
 class GitRevision(object):
 
@@ -44,25 +39,19 @@ class GitRevision(object):
             self._tag = self.git('git describe --always --tags')
         except Exception, err: # TODO: Logging mechanism
             self._tag = ''
-            # notify_admins(exception="Git Exception in init_repo() gave <%s>"%err)
 
     def git(self, command=None, stderr=PIPE, stdout=PIPE, **kwargs):
         """
         Run a subprocess for the git command. Mail admins in the event of an error.
         """
         try:
-            # POpen because check_output is 2.7 and Popen exists in 2.6.5
             proc = Popen(
                 command.split(), stderr=stderr, stdout=stdout,
                 close_fds=(name == 'posix'), cwd=self.path, **kwargs)
 
         except Exception, err:
             pass
-        #     notify_admins(exception="Exception in git() gave <%s>"%err)
         stdout, stderr = [s.strip() for s in proc.communicate()]
-        status = proc.returncode
-        # if status:
-        #     notify_admins(exception="Git Exception")
         return stdout
 
     def find_git(self, **kwargs):
@@ -77,24 +66,5 @@ class GitRevision(object):
                          close_fds=(name == 'posix'), cwd=os.path.dirname(command[2]), **kwargs)
         except Exception, err:
             pass
-            # notify_admins(exception="Exception in find_git() gave <%s>"%err)
-
         output, error = [s.strip() for s in proc.communicate()]
-        status = proc.returncode
-        # if status:
-        #     subject="[Kibrit] Couldn't find .git directory"
-        #     message="I couldn't find .git while trying to run %s I got status <%s> and error <%s> the output was <%s>"\
-        #             %(command, status, error, output)
-        #     notify_admins(subject=subject,message=message)
         return output
-
-def notify_admins(subject=None, message=None, exception=None):
-    # if not settings.DEBUG:
-    subject = subject or "[Kibrit] Kibrit has failed."
-    message = message or "In project Something Kibrit has failed. Exception is : <%s>" %exception or 'Not Available'
-    try:
-        # send_mail("B", "A", "sinanm89@gmail.com", ["sinanm89@gmail.com"], fail_silently=True)
-        mail_admins(subject, message, fail_silently=True)
-    except:
-        pass
-

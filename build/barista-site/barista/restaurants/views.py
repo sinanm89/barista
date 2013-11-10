@@ -1,42 +1,51 @@
+import json
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
-from django.utils import timezone
-from django.views.generic import ListView, DetailView, TemplateView
+from django.http import HttpResponseRedirect, HttpResponse
+from django.views.generic import ListView, TemplateView, FormView, View
+from barista.restaurants.forms import RestaurantFormSet, BaseRestaurantOpinionForm
 from barista.restaurants.models import Restaurant
 from barista.restaurants.utils import is_lunchtime
+from django.forms.models import modelformset_factory
 
 
-class EligibleRestaurantsListView(ListView):
-    queryset = Restaurant.objects.all()
+
+class EligibleRestaurantsListView(FormView):
     template_name = "restaurants/list.html"
-    context_object_name = "object_list"
-
-    def dispatch(self, request, *args, **kwargs):
-        if is_lunchtime():
-            return HttpResponseRedirect(reverse('lunchtime:results'))
-        return super(EligibleRestaurantsListView, self).dispatch(request, *args, **kwargs)
-
-
-    def get_queryset(self):
-        queryset = super(EligibleRestaurantsListView, self).get_queryset()
-
-        return queryset
-
+    form_class = RestaurantFormSet
+    success_url = '.'
 
     def get_eligible_restaurants(self):
-        eligible_restaurant_list = self.queryset
+        eligible_restaurant_list = Restaurant.objects.all()
 
         # Do logic magic
         return eligible_restaurant_list
 
+    def post(self, request, *args, **kwargs):
+        print '------> POST HERE'
+        form = RestaurantFormSet(data=self.request.POST)
+        if form.is_valid():
+            print '----------> VALID FORM'
+            #for data in form.cleaned_data:
+                #print data
+        #import pdb; pdb.set_trace()
+        return super(EligibleRestaurantsListView, self).post(request, *args, **kwargs)
+
+    def get_form_class(self):
+
+        return super(EligibleRestaurantsListView, self).get_form_class()
+
+
     def get_context_data(self, **kwargs):
         context = super(EligibleRestaurantsListView, self).get_context_data(**kwargs)
         extra_context = {
-            'eligible_restaurants' : self.get_eligible_restaurants()
+            'opinion_forms' : RestaurantFormSet(),
         }
+        #import pdb;pdb.set_trace()
         context.update(extra_context)
         return context
+
 
 class ResultView(TemplateView):
 
     template_name = "restaurants/results.html"
+

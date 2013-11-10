@@ -1,19 +1,3 @@
-# setup(
-#     name='django-geoportail',
-#     version='0.3.1',
-#     author=u'Bruno Renié',
-#     author_email='bruno.renie.fr',
-#     packages=['geoportal'],
-#     url='http://bitbucket.org/bruno/django-geoportail',
-#     license='BSD licence, see LICENCE.txt',
-#     description='Add maps and photos from the French National Geographic' + \
-#                 ' Institute to GeoDjango',
-#     long_description=open('README.txt').read(),
-#     zip_safe=False,
-# )
-#
-# #!/usr/bin/env python
-#
 """
 Kibrit
 ------
@@ -39,10 +23,10 @@ NAME = 'kibrit'
 CURDIR = op.dirname(__file__)
 MODULE = __import__(NAME)
 README = op.join(CURDIR, 'README.rst')
-REQUIREMENTS = open(op.join(CURDIR, 'requirements.txt')).readlines()
+# REQUIREMENTS = open(op.join(CURDIR, 'requirements.txt')).readlines()
 
-if sys.version_info < (2, 7):
-    REQUIREMENTS.append('importlib')
+# if sys.version_info < (2, 7):
+#     REQUIREMENTS.append('importlib')
 
 
 setup(
@@ -56,22 +40,21 @@ setup(
     keywords = "mercurial git static revision django flask".split(),
 
     author_email='horneds@gmail.com',
-    url=' http://github.com/klen/dealer',
+    url=' http://github.com/sinanm89/kibrit',
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: Alpha',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
-        'Natural Language :: Russian',
         'Natural Language :: English',
-        'License :: OSI Approved :: BSD License',
+        'Natural Language :: Turkish',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 2.6.5',
         'Environment :: Console',
     ],
-
+    download_url = 'https://github.com/sinanm89/kibrit/tarball/0.1',
+    include_package_data=True,
     packages=find_packages(),
-    install_requires=REQUIREMENTS,
-    test_suite = 'tests',
-    tests_require=('flask', 'mercurial', 'django'),
+    zip_safe=False
 )

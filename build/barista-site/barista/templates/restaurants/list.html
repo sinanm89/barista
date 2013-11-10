@@ -1,23 +1,40 @@
 {% extends "base.html" %}
 {% block body %}
+
     <div class="span8 offset2">
         <h3>Preferences?</h3>
 
-        <ul class="unstyled">
-            {% for restaurant in eligible_restaurants %}
-                <div class="span2">
-                    <li>
-                        <label for="{{ restaurant.slug }}" onclick="">
-                            <button class="btn btn-large btn-primary btn-block">
-                                <input class="" type="checkbox" id="{{ restaurant.slug }}" name="something" value="{{ restaurant.id }}">
-                                {{ restaurant.name }}
-                            </button>
-                        </label>
-                    </li>
-                    <br/>
-                </div>
-            {% endfor %}
-        </ul>
+        <form action="{% url 'lunchtime:daily_restaurants' %}" method="POST">
+            {{ opinion_forms.management_form }}
+            {% csrf_token %}
+            {% for form in opinion_forms %}
+                {{ form.id }}
+                <button id="opinion_choice" type="button" class="btn btn-large btn-block btn-info" value="meh" >
+                                     {{ form.name.value }}</button>
 
+                {{ form.opinion }}
+            {% endfor %}
+
+            <div><input type="submit" class="btn-primary btn-large btn-submit" value="Submit"></div>
+        </form>
     </div>
+    <script>
+        $(function(){
+            $("button").click(function(){
+{#                console.log('hello');#}
+                var $this = $(this);
+                if($this.is('.btn-info')) {
+                    $this.toggleClass("btn-info btn-success");
+                    $this.val('yes');
+                } else if($this.is('.btn-success')) {
+                    $this.toggleClass("btn-success btn-danger");
+                    $this.val('no');
+                } else if($this.is('.btn-danger')) {
+                    $this.toggleClass("btn-danger btn-info");
+                    $this.val('meh');
+                }
+            })
+        })
+    </script>
+
 {% endblock %}

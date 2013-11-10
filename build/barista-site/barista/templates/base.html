@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.min.css"/>
     <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
@@ -25,6 +27,11 @@
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+
+
+{% endblock %}
 {#<h4> Bootstrap Test </h4>#}
 {#<br/>#}
 {#<br/>#}
