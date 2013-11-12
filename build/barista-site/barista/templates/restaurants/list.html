@@ -9,32 +9,67 @@
             {% csrf_token %}
             {% for form in opinion_forms %}
                 {{ form.id }}
-                <button id="opinion_choice" type="button" class="btn btn-large btn-block btn-info" value="meh" >
-                                     {{ form.name.value }}</button>
+                id: {{ form.opinion.auto_id }}
+                <div>
 
-                {{ form.opinion }}
+                    <button type="button"
+                            class="togglebutton btn btn-large btn-block"
+                            data-state="2" >
+                        {{ form.name.value }}
+                    </button>
+                    {{ form.opinion }}
+
+                </div>
             {% endfor %}
 
-            <div><input type="submit" class="btn-primary btn-large btn-submit" value="Submit"></div>
+            <div><input type="submit" class=" btn-primary btn-large btn-submit" value="Submit"></div>
         </form>
     </div>
     <script>
-        $(function(){
-            $("button").click(function(){
-{#                console.log('hello');#}
-                var $this = $(this);
-                if($this.is('.btn-info')) {
-                    $this.toggleClass("btn-info btn-success");
-                    $this.val('yes');
-                } else if($this.is('.btn-success')) {
-                    $this.toggleClass("btn-success btn-danger");
-                    $this.val('no');
-                } else if($this.is('.btn-danger')) {
-                    $this.toggleClass("btn-danger btn-info");
-                    $this.val('meh');
-                }
-            })
-        })
+{#        $(function(){#}
+{#            $("button").click(function(){#}
+{#                var $this = $(this);#}
+{#                console.log($(this.value));#}
+{#                if($this.is('.btn-info')) {#}
+{#                    $this.toggleClass("btn-info btn-success");#}
+{#                    $this.val('yes');#}
+{#                } else if($this.is('.btn-success')) {#}
+{#                    $this.toggleClass("btn-success btn-danger");#}
+{#                    $this.val('no');#}
+{#                } else if($this.is('.btn-danger')) {#}
+{#                    $this.toggleClass("btn-danger btn-info");#}
+{#                    $this.val('meh');#}
+{#                }#}
+{#            });#}
+{#        });#}
+
+	$(function () {
+
+		var classes = ['btn-success', 'btn-danger', ''];
+
+		$('.togglebutton').click(function (event) {
+			var button_state = $(event.target).data('state');
+            var target = $(event.target);
+            $(event.target).removeClass(classes[button_state]);
+            if ( button_state < 2 ) {
+				button_state++;
+			} else {
+				button_state = 0;
+                i=0;
+            }
+			$(event.target).data('state', button_state);
+			$(event.target).addClass(classes[button_state]);
+            target.parent('div').find('input:radio:checked').each(function (i, e) {
+                $(e).attr('checked', 'false');
+            });
+            console.log('after ',button_state);
+			target.parent('div').find('input').eq(button_state).attr('checked', 'checked');
+			return false;
+
+		});
+
+	});
+
     </script>
 
 {% endblock %}

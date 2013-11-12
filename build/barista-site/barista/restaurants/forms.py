@@ -8,11 +8,9 @@ class BaseRestaurantOpinionForm(forms.ModelForm):
     opinion = forms.ChoiceField(label=_("You want this restaurant?"),
                                 choices=(('yes', 'yes'), ('no', 'no'), ('meh', 'meh')),
                                 required=False,
-                                widget=forms.RadioSelect(
-                                    attrs={
-                                        'class':'unstyled'
-                                    }
-                                ))
+                                widget=forms.RadioSelect(attrs={'class':'unstyled'}),
+                                #initial='meh',
+                                )
 
     class Meta:
         model = Restaurant

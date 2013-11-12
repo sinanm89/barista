@@ -14,21 +14,33 @@ class EligibleRestaurantsListView(FormView):
     form_class = RestaurantFormSet
     success_url = '.'
 
-    def get_eligible_restaurants(self):
+    def get_eligible_restaurants(self, data):
         eligible_restaurant_list = Restaurant.objects.all()
-
+        for obj in data:
+            obj['id'] = obj['id'].id
         # Do logic magic
-        return eligible_restaurant_list
+        return data
 
     def post(self, request, *args, **kwargs):
         print '------> POST HERE'
         form = RestaurantFormSet(data=self.request.POST)
+
         if form.is_valid():
+            data_list = []
             print '----------> VALID FORM'
-            #for data in form.cleaned_data:
-                #print data
+            for data in form.cleaned_data:
+                print data
+                data_list.append(data)
+            data_list = self.get_eligible_restaurants(data_list)
+            print data_list
+            return HttpResponse(json.dumps(data_list), content_type="application/json")
+
         #import pdb; pdb.set_trace()
-        return super(EligibleRestaurantsListView, self).post(request, *args, **kwargs)
+        #return super(EligibleRestaurantsListView, self).post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+
+        return HttpResponseRedirect()
 
     def get_form_class(self):
 
