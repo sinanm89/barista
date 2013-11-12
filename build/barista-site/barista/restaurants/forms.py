@@ -9,7 +9,7 @@ class BaseRestaurantOpinionForm(forms.ModelForm):
                                 choices=(('yes', 'yes'), ('no', 'no'), ('meh', 'meh')),
                                 required=False,
                                 widget=forms.RadioSelect(attrs={'class':'unstyled'}),
-                                #initial='meh',
+                                initial='meh',
                                 )
 
     class Meta:
