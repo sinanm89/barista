@@ -5,6 +5,15 @@ from django.utils.translation import ugettext_lazy as _
 from barista.restaurants.models import Restaurant
 
 class BaseRestaurantOpinionForm(forms.ModelForm):
+    """
+        Restaurant choice form
+            meh:
+                informal
+                exclamation
+                1.
+                expressing a lack of interest or enthusiasm.
+                "meh, I'm not impressed so far"
+    """
     opinion = forms.ChoiceField(label=_("You want this restaurant?"),
                                 choices=(('yes', 'yes'), ('no', 'no'), ('meh', 'meh')),
                                 required=False,
