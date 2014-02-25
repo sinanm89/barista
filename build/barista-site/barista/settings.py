@@ -69,7 +69,7 @@ STATICFILES_DIRS = (
     ("static/css/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/css/')),
     ("static/images/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/images/')),
     ("static/js/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/js/')),
-    ("static/markitup/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/markitup/')),
+    # ("static/markitup/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/markitup/')),
 )
 
 # List of finder classes that know how to find static files in
@@ -143,12 +143,13 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 
     'south',
     'suit',
     'barista.restaurants',
-
     'django_extensions',
+
     'django.contrib.admin',
     'django.contrib.admindocs',
 
@@ -185,8 +186,8 @@ LOGGING = {
 
 KIBRIT_PATH = '/home/vagrant/barista/src/barista/'
 
-
+POSTGIS_VERSION = (1, 5, 3)
 try:
-    from settings_local import *
+    from settings_locale import *
 except ImportError:
     pass
