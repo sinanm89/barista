@@ -29,10 +29,11 @@ class EligibleRestaurantsListView(FormView):
     def get_context_data(self, **kwargs):
         context = super(EligibleRestaurantsListView, self).get_context_data(**kwargs)
         extra_context = {
-            'opinion_forms' : RestaurantFormSet(),
+            'restaurant_forms' : RestaurantFormSet(queryset=Restaurant.objects.all()[:3]),
             'all_restaurants' : Restaurant.objects.all(),
         }
         context.update(extra_context)
+        # import pdb;pdb.set_trace()
         return context
 
 class ResultView(TemplateView):

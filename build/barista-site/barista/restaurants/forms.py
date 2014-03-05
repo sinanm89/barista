@@ -46,4 +46,5 @@ class BaseRestaurantOpinionForm(forms.ModelForm):
             return instance.name
         else:
             return self.cleaned_data['name']
+
 RestaurantFormSet = modelformset_factory(Restaurant, BaseRestaurantOpinionForm, extra=0)

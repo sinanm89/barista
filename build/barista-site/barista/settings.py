@@ -185,7 +185,7 @@ LOGGING = {
     }
 }
 
-KIBRIT_PATH = '/vagrant/'
+# KIBRIT_PATH = '/vagrant/'
 TEMPLATE_CONTEXT_PROCESSORS += (
     'django_kibrit.context_processors.revision',
     )

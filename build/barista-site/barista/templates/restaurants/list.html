@@ -41,10 +41,11 @@
     <div class="span8 offset2">
         <h3>Preferences?</h3>
 
-        <form action="{% url 'lunchtime:daily_restaurants' %}" method="POST">
-            {{ opinion_forms.management_form }}
+{#        <form action="{% url 'lunchtime:daily_restaurants' %}" method="POST">#}
+        <form action="" method="POST">
+            {{ restaurant_forms.management_form }}
             {% csrf_token %}
-            {% for form in opinion_forms %}
+            {% for form in restaurant_forms %}
                 {{ form.id }}
                 <div>
                     <button type="button" class="togglebutton btn btn-large btn-block" data-state="2" > {{ form.name.value }} </button>
