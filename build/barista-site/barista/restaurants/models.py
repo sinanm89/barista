@@ -9,7 +9,7 @@ class Restaurant(models.Model):
     Restaurants
     """
     name = models.CharField(_('Restaurant Name'), max_length = 255, default="Restaurant")
-    slug = models.CharField(_('Slug'), max_length = 255, default="restaurant")
+    slug = models.SlugField(_('Slug'), max_length = 255, default="restaurant")
     category = models.ManyToManyField("RestaurantCategory", blank=True, null=True,
                                       verbose_name=_("Categories"),
                                       related_name="category",

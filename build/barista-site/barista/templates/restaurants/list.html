@@ -1,4 +1,41 @@
 {% extends "base.html" %}
+{% block extrahead %}
+
+    <script>
+        $(function () {
+
+            var classes = ['btn-success', 'btn-danger', ''];
+
+            $('.togglebutton').click(function (event) {
+
+                var button_state = $(event.target).data('state');
+                var target = $(event.target);
+
+                $(event.target).removeClass(classes[button_state]);
+
+                if ( button_state < 2 ) {
+                    button_state++;
+                } else {
+                    button_state = 0;
+                    i=0;
+                }
+
+                $(event.target).data('state', button_state);
+                $(event.target).addClass(classes[button_state]);
+                target.parent('div').find('input:radio:checked').each(function (i, e) {
+                    $(e).attr('checked', 'false');
+                });
+                target.parent('div').find('input').eq(button_state).attr('checked', 'checked');
+                return false;
+
+            });
+
+        });
+
+    </script>
+
+
+{% endblock extrahead %}
 {% block body %}
 
     <div class="span8 offset2">
@@ -10,49 +47,18 @@
             {% for form in opinion_forms %}
                 {{ form.id }}
                 <div>
-                    <button type="button"
-                            class="togglebutton btn btn-large btn-block"
-                            data-state="2" >
-                        {{ form.name.value }}
-                    </button>
+                    <button type="button" class="togglebutton btn btn-large btn-block" data-state="2" > {{ form.name.value }} </button>
                     <div style="display: none;">{{ form.opinion }}</div>
                 </div>
             {% endfor %}
 
-            <div><input type="submit" class=" btn-primary btn-large btn-submit" value="Submit"></div>
+            <div><input type="submit" class="btn-primary btn-large btn-submit" value="Submit"></div>
         </form>
     </div>
-    <script>
-	$(function () {
-
-		var classes = ['btn-success', 'btn-danger', ''];
-
-		$('.togglebutton').click(function (event) {
-
-			var button_state = $(event.target).data('state');
-            var target = $(event.target);
-
-            $(event.target).removeClass(classes[button_state]);
-
-            if ( button_state < 2 ) {
-				button_state++;
-			} else {
-				button_state = 0;
-                i=0;
-            }
-
-            $(event.target).data('state', button_state);
-			$(event.target).addClass(classes[button_state]);
-            target.parent('div').find('input:radio:checked').each(function (i, e) {
-                $(e).attr('checked', 'false');
-            });
-			target.parent('div').find('input').eq(button_state).attr('checked', 'checked');
-			return false;
-
-		});
-
-	});
-
-    </script>
-
-{% endblock %}
+    <div class="span2 offset2">
+        <h3>Select From All</h3>
+        {% for restaurant in all_restaurants %}
+        <button type="button" class="btn-primary btn-small">{{ restaurant.name }}</button>
+        {% endfor %}
+    </div>
+{% endblock body %}

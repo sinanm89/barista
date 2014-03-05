@@ -2,7 +2,7 @@ from django.conf.urls import patterns, url
 from barista.restaurants.views import EligibleRestaurantsListView, ResultView
 
 urlpatterns = patterns('',
-                url(r'^$', EligibleRestaurantsListView.as_view(), name='daily_restaurants'),
+                url(r'^', EligibleRestaurantsListView.as_view(), name='daily_restaurants'),
                 url(r'^results/$', ResultView.as_view(), name="results"),
                 #
                 # url(r'^search/$', StreamSearchPhotosListView.as_view(), name="stream_search_photos"),

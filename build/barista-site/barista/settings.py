@@ -77,12 +77,12 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+   'django.contrib.staticfiles.finders.DefaultStorageFinder',
 
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = '94*hza*y@ba!rcq#d9j7pd+ej-cg8%)2%uye9x$1(%1w^x*e93'
+SECRET_KEY = '94*hza*y@ba!rcq#kalendermesrepcg8%)2%uye9x$1(%1w^x*e93'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -149,6 +149,7 @@ INSTALLED_APPS = (
     'suit',
     'barista.restaurants',
     'django_extensions',
+    'django_kibrit',
 
     'django.contrib.admin',
     'django.contrib.admindocs',
@@ -184,10 +185,13 @@ LOGGING = {
     }
 }
 
-KIBRIT_PATH = '/home/vagrant/barista/src/barista/'
+KIBRIT_PATH = '/vagrant/'
+TEMPLATE_CONTEXT_PROCESSORS += (
+    'django_kibrit.context_processors.revision',
+    )
 
-POSTGIS_VERSION = (1, 5, 3)
+# POSTGIS_VERSION = (1, 5, 3)
 try:
-    from settings_locale import *
+    from settings_local import *
 except ImportError:
     pass

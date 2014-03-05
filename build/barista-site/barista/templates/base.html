@@ -2,21 +2,21 @@
 {% load staticfiles %}
 <html lang="en">
 <head>
-    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}bootstrap/css/bootstrap-responsive.min.css"/>
-    <script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
-    <link rel="stylesheet/less" href="{{ STATIC_URL }}bootstrap/less/bootstrap.less" media="all" />
-    <script src="{{ STATIC_URL }}bootstrap/assets/js/less.js"></script>
-    <title>Barista {{ REVISION }}</title>
+    <script src="{{ MEDIA_URL }}js/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}bootstrap/css/bootstrap-responsive.min.css"/>
+    <script type="text/javascript" src="{{ MEDIA_URL }}bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet/less" href="{{ MEDIA_URL }}bootstrap/less/bootstrap.less" media="all" />
+    <script src="{{ MEDIA_URL }}bootstrap/assets/js/less.js"></script>
+    <title>Barista {{ KIBRIT_REVISION }}</title>
 </head>
 <body>
 <div class="container">
     <div class="row">
         <div class="span12">
             {% block body %}
-                <img src="{{ STATIC_URL }}/images/suratim2.JPG" class="img-circle pull-right">
+                <img src="{{ MEDIA_URL }}/images/suratim2.JPG" class="img-circle pull-right">
                 <h1 class="header">Not just for coffee anymore.</h1>
                 <br/>
                 <blockquote class="pull-right">
@@ -27,10 +27,10 @@
         </div>
     </div>
 </div>
+{% block extrahead %}
+{% endblock extrahead %}
 
 {% block extra_js %}
-
-
 {% endblock %}
 {#<h4> Bootstrap Test </h4>#}
 {#<br/>#}
@@ -80,6 +80,6 @@
 {#  </label>#}
 {#  <button type="submit" class="btn">Sign in</button>#}
 {#</form>#}
-<blockquote><small>V.{{ REVISION }}</small></blockquote>
+<blockquote><small>V.{{ KIBRIT_REVISION }}</small></blockquote>
 </body>
 </html>
