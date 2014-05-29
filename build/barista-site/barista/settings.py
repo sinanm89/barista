@@ -128,13 +128,6 @@ TEMPLATE_DIRS = (
 
 )
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-    },
-}
-
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -185,10 +178,16 @@ LOGGING = {
     }
 }
 
-# KIBRIT_PATH = '/vagrant/'
-TEMPLATE_CONTEXT_PROCESSORS += (
-    'django_kibrit.context_processors.revision',
-    )
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
+    },
+}
+
+KIBRIT_PATH = "/home/vagrant/barista/src"
+TEMPLATE_CONTEXT_PROCESSORS += ('django_kibrit.context_processors.revision',)
+INSTALLED_APPS += 'django_kibrit',
 
 # POSTGIS_VERSION = (1, 5, 3)
 try:

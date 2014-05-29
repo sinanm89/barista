@@ -4,7 +4,7 @@ Vagrant::Config.run do |config|
         config.vm.forward_port 80, 8081
         config.vm.forward_port 8000, 8005
         config.vm.network :bridged
-        config.vm.network :hostonly, "33.33.33.10"
+        config.vm.network :hostonly, "33.33.33.100"
         config.vm.customize ["modifyvm", :id, "--rtcuseutc", "on"]
         config.ssh.max_tries = 100
         config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)

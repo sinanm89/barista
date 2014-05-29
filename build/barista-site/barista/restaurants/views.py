@@ -33,7 +33,6 @@ class EligibleRestaurantsListView(FormView):
             'all_restaurants' : Restaurant.objects.all(),
         }
         context.update(extra_context)
-        # import pdb;pdb.set_trace()
         return context
 
 class ResultView(TemplateView):
