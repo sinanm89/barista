@@ -37,29 +37,33 @@
 
 {% endblock extrahead %}
 {% block body %}
+    <div class="span 8 offset1">
+        <div class="span3">
+            <h3>Top 3 :f</h3>
 
-    <div class="span8 offset2">
-        <h3>Preferences?</h3>
+            {#        <form action="{% url 'lunchtime:daily_restaurants' %}" method="POST">#}
+            <form action="" method="POST">
+                {{ restaurant_forms.management_form }}
+                {% csrf_token %}
+                {% for form in restaurant_forms %}
+                    {{ form.id }}
+                    <div>
+                        <button type="button" class="btn btn-large btn-block togglebutton " data-state="2" > {{ form.name.value }} </button>
+                        <div style="display: none;">{{ form.opinion }}</div>
+                    </div>
+                {% endfor %}
 
-{#        <form action="{% url 'lunchtime:daily_restaurants' %}" method="POST">#}
-        <form action="" method="POST">
-            {{ restaurant_forms.management_form }}
-            {% csrf_token %}
-            {% for form in restaurant_forms %}
-                {{ form.id }}
-                <div>
-                    <button type="button" class="togglebutton btn btn-large btn-block" data-state="2" > {{ form.name.value }} </button>
-                    <div style="display: none;">{{ form.opinion }}</div>
-                </div>
-            {% endfor %}
+                <div><input type="submit" class="btn-primary btn-large btn-submit" value="Submit"></div>
+            </form>
+        </div>
+        <div class="span3 offset3">
+            <h3 style="text-align: center;">Select From All</h3>
+            <div class="span1 offset1">
 
-            <div><input type="submit" class="btn-primary btn-large btn-submit" value="Submit"></div>
-        </form>
-    </div>
-    <div class="span2 offset2">
-        <h3>Select From All</h3>
-        {% for restaurant in all_restaurants %}
-        <button type="button" class="btn-primary btn-small">{{ restaurant.name }}</button>
-        {% endfor %}
+                {% for restaurant in all_restaurants %}
+                    <button type="button" class="btn btn-small btn-block togglebutton" data-state="2">{{ restaurant.name|safe|truncatechars:12 }}</button>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock body %}

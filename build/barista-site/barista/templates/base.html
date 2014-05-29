@@ -12,9 +12,9 @@
     <title>Barista {{ KIBRIT_REVISION }}</title>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="span12">
+<div class="container" style="border:3px solid grey;">
+<div class=".col-md-8" style="border:1px solid red;">
+
             {% block body %}
                 <img src="{{ MEDIA_URL }}/images/suratim2.JPG" class="img-circle pull-right">
                 <h1 class="header">Not just for coffee anymore.</h1>
@@ -24,62 +24,17 @@
                     <small class="text-right"><b>Sinan Midillili</b> from <cite title="Source Title">Rahatol.com</cite></small>
                 </blockquote>
             {% endblock %}
-        </div>
-    </div>
+</div>
+<div class=".col-md-4" style="border:1px solid yellow;">
+    here is something we do
+</div>
 </div>
 {% block extrahead %}
 {% endblock extrahead %}
 
 {% block extra_js %}
 {% endblock %}
-{#<h4> Bootstrap Test </h4>#}
-{#<br/>#}
-{#<br/>#}
-{#<table class="table">#}
-{#<p class='lead'>Example</p>#}
-{#    <tr>#}
-{#        <td>#</td>#}
-{#        <td>Link</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <td>1</td>#}
-{#        <td>{{ STATIC_URL }}/bootstrap/examples/smth</td>#}
-{#    </tr>#}
-{#    <tr>#}
-{#        <td>2</td>#}
-{#        <td>{{ STATIC_URL }}/bootstrap/examples/smth2</td>#}
-{#    </tr>#}
-{#</table>#}
-{##}
-{#<dl class="dl-horizontal">#}
-{#    <dt>Example 1</dt>  <dd>{{ STATIC_URL }}/bootstrap/examples/smth2</dd>#}
-{#</dl>#}
-{##}
-{#<pre>#}
-{#    &lt;p&gt;Bu kod isleri karmasik isler&lt;/p&gt;#}
-{#</pre>#}
-{##}
-{#<form>#}
-{#  <fieldset>#}
-{#    <legend>Legend</legend>#}
-{#    <label>Name</label>#}
-{#    <input type="text" placeholder="Your Name">#}
-{#    <span class="help-block">You can either place your full name or screen name.</span>#}
-{#    <label class="checkbox">#}
-{#      <input type="checkbox"> Remember me.#}
-{#    </label>#}
-{#    <button type="submit" class="btn">Submit</button>#}
-{#  </fieldset>#}
-{#</form>#}
-{##}
-{#<form class="form-inline">#}
-{#  <input type="text" class="input-small" placeholder="Email">#}
-{#  <input type="password" class="input-small" placeholder="Password">#}
-{#  <label class="checkbox">#}
-{#    <input type="checkbox"> Remember me#}
-{#  </label>#}
-{#  <button type="submit" class="btn">Sign in</button>#}
-{#</form>#}
+
 <blockquote><small>V.{{ KIBRIT_REVISION }}</small></blockquote>
 </body>
 </html>
