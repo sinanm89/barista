@@ -190,7 +190,7 @@ TEMPLATE_CONTEXT_PROCESSORS += (
     'django_kibrit.context_processors.revision',
     )
 
-# POSTGIS_VERSION = (1, 5, 3)
+POSTGIS_VERSION = (1, 5, 3)
 try:
     from settings_local import *
 except ImportError:

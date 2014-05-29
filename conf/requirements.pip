@@ -1,6 +1,7 @@
 Django==1.6.0
 django-extensions==1.2.5
-south==0.8.4
+south==0.8.2
+gunicorn
 docutils==0.7
 Markdown==2.0.3
 python-memcached==1.53
@@ -10,3 +11,4 @@ requests_oauthlib
 django-suit==0.2.6
 django-kibrit==0.1.5
 BeautifulSoup==3.2.1
+
