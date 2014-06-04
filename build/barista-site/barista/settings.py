@@ -138,6 +138,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.gis',
 
+    'gunicorn',
     'south',
     'suit',
     'barista.restaurants',
