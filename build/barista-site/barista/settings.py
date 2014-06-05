@@ -5,11 +5,11 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Sinan Midillili', 'sinan@hipo.biz'),
+    ('Sinan Midillili', 'sinan@rahatol.com'),
 )
 
-DEFAULT_FROM_EMAIL = 'sinan@hipo.biz',
-SERVER_EMAIL = 'sinan@hipo.biz'
+DEFAULT_FROM_EMAIL = 'sinan@rahatol.com',
+SERVER_EMAIL = 'sinan@rahatol.com'
 
 MANAGERS = ADMINS
 
