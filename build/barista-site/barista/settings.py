@@ -5,7 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Sinan Midillili', 'sinan@rahatol.com'),
+    ('Sinan Midillili', 'snn@rahatol.com'),
 )
 
 DEFAULT_FROM_EMAIL = 'sinan@rahatol.com',
@@ -42,7 +42,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = os.path.join(os.path.dirname( __file__ ), 'media/files/' )
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media/files/')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -54,7 +54,7 @@ MEDIA_URL = '/static/files/'
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 # STATIC_ROOT = os.path.join(os.path.realpath(os.path.dirname( __file__ )), 'media/' )
-STATIC_ROOT = os.path.join( os.path.dirname( __file__ ), 'media/' )
+STATIC_ROOT = os.path.join( os.path.dirname(__file__), 'media/')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -186,7 +186,7 @@ CACHES = {
     },
 }
 
-KIBRIT_PATH = "/home/vagrant/barista/src"
+KIBRIT_PATH = "/home/snn/Projects/barista/src/barista"
 TEMPLATE_CONTEXT_PROCESSORS += ('django_kibrit.context_processors.revision',)
 INSTALLED_APPS += 'django_kibrit',
 

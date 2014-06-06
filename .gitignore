@@ -8,3 +8,4 @@ barista/media/files
 .sass-cache
 barista/media/admin
 *.sublime-workspace
+.ropeproject/
