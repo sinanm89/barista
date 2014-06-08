@@ -12,4 +12,5 @@ requests_oauthlib
 django-suit==0.2.6
 django-kibrit==0.3
 BeautifulSoup==3.2.1
-
+fabric==1.10.0
+fabtools==0.18.0
