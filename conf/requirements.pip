@@ -1,7 +1,6 @@
 Django==1.6.0
 django-extensions==1.2.5
 south==0.8.2
-gunicorn
 docutils==0.7
 Markdown==2.0.3
 gunicorn==18.0
@@ -12,5 +11,3 @@ requests_oauthlib
 django-suit==0.2.6
 django-kibrit==0.3
 BeautifulSoup==3.2.1
-fabric==1.10.0
-fabtools==0.18.0
