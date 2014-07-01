@@ -89,7 +89,7 @@
 		background-image: url("images/bg.jpg");
 		background-position: bottom left;
 		background-repeat: repeat-x;
-		height: 260px;
+		height: auto;
 		left: 0;
 		opacity: 1;
 		position: fixed;
