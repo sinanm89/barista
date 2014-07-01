@@ -64,7 +64,7 @@
 		opacity: 0;
 		position: fixed;
 		top: 0;
-		width: 10%;
+		width: 100%;
 	}
 
 /* BG */
@@ -89,7 +89,7 @@
 		background-image: url("images/bg.jpg");
 		background-position: bottom left;
 		background-repeat: repeat-x;
-		height: 10%;
+		height: 100%;
 		left: 0;
 		opacity: 1;
 		position: fixed;
