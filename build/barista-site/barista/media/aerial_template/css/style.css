@@ -124,12 +124,12 @@
 		background-position: top left, center center;
 		background-repeat: repeat, no-repeat;
 		background-size: auto, cover;
-		height: 100%;
+		height: 526px;
 		left: 0;
 		opacity: 0;
 		position: fixed;
 		top: 0;
-		width: 100%;
+		width: 512px;
 	}
 
 /* Main */
