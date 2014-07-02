@@ -1,4 +1,4 @@
 barista
 =======
 
-barista site ad pro hominem.
+This is more of a personal site now. http://rahatol.com for demo
