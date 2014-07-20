@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^$', TemplateView.as_view(template_name="aerial/index.html")),
 
     url(r'^barista/', BaristaHomeView.as_view()),
+    url(r'^amazonChallenge/', TemplateView.as_view(template_name="amazon.html")),
     # url(r'^barista/', include('barista.foo.urls')),
 
     url(r'^food/', include('barista.restaurants.urls', namespace="lunchtime")),
