@@ -153,7 +153,6 @@ INSTALLED_APPS = (
 SUIT_CONFIG = {
     'ADMIN_NAME': 'Barista',
     'SHOW_REQUIRED_ASTERISK': True
-
 }
 
 # A sample logging configuration. The only tangible logging
@@ -191,6 +190,15 @@ CACHES = {
         'LOCATION': '127.0.0.1:11211',
     },
 }
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sinanm89@gmail.com'
+EMAIL_HOST_PASSWORD = 'THERE IS A PASSWORD HERE'
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+
 
 KIBRIT_PATH = "/home/snn/Projects/barista/src/barista"
 TEMPLATE_CONTEXT_PROCESSORS += ('django_kibrit.context_processors.revision',)
