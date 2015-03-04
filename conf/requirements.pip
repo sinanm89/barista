@@ -12,6 +12,5 @@ gunicorn==19.2.1
 python-memcached
 
 requests_oauthlib
-django-suit
 django-kibrit==0.3
 BeautifulSoup==3.2.1
