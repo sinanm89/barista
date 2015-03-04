@@ -6,7 +6,6 @@ Markdown==2.6
 requests
 django-suit
 memcached
-django-kibrit
 
 gunicorn==19.2.1
 python-memcached
