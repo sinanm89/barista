@@ -5,7 +5,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Sinan Midillili', 'snn@rahatol.com'),
+    ('Sinan Midillili', 'sinan@rahatol.com'),
 )
 
 DEFAULT_FROM_EMAIL = 'sinan@rahatol.com',
@@ -47,39 +47,39 @@ MEDIA_ROOT = os.path.join(os.path.dirname(__file__), 'media/files/')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
-MEDIA_URL = '/static/files/'
+MEDIA_URL = 'media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
 # STATIC_ROOT = os.path.join(os.path.realpath(os.path.dirname( __file__ )), 'media/' )
-STATIC_ROOT = os.path.join( os.path.dirname(__file__), 'media/')
-
+# STATIC_ROOT = os.path.join( os.path.dirname(__file__), 'media/')
+# print STATIC_ROOT
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
-STATIC_URL = '/static/'
+STATIC_URL = '/media/'
 
 # Additional locations of static files
-STATICFILES_DIRS = (
+# STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    ("suit/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/suit/')),
+    # ("suit/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/suit/')),
     # ("static/css/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/css/')),
     # ("static/images/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/images/')),
     # ("static/js/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/js/')),
     # ("static/markitup/", os.path.join(os.path.realpath(os.path.dirname(__file__)), 'media/markitup/')),
-)
+# )
 
 # List of finder classes that know how to find static files in
 # various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-   'django.contrib.staticfiles.finders.DefaultStorageFinder',
-
-)
+# STATICFILES_FINDERS = (
+#     'django.contrib.staticfiles.finders.FileSystemFinder',
+#     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+#
+# )
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '94*hza*y@ba!rcq#kalendermesrepcg8%)2%uye9x$1(%1w^x*e93'
@@ -139,7 +139,6 @@ INSTALLED_APPS = (
     'django.contrib.gis',
 
     'gunicorn',
-    'south',
     'suit',
     'barista.restaurants',
     'django_extensions',
@@ -196,13 +195,11 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sinanm89@gmail.com'
 EMAIL_HOST_PASSWORD = 'THERE IS A PASSWORD HERE'
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-SERVER_EMAIL = EMAIL_HOST_USER
 
 
 KIBRIT_PATH = "/home/snn/Projects/barista/src/barista"
 TEMPLATE_CONTEXT_PROCESSORS += ('django_kibrit.context_processors.revision',)
-INSTALLED_APPS += 'django_kibrit',
+
 
 POSTGIS_VERSION = (1, 5, 3)
 try:

@@ -11,3 +11,14 @@ requests_oauthlib
 django-suit==0.2.6
 django-kibrit==0.3
 BeautifulSoup==3.2.1
+
+
+#updated
+#Django==1.7.5
+#django-extensions
+#docutils==0.12
+#Markdown==2.6
+#requests
+#django-suit
+#memcached
+#django-kibrit
