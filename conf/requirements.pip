@@ -5,7 +5,6 @@ docutils==0.12
 Markdown==2.6
 requests
 django-suit
-memcached
 
 gunicorn==19.2.1
 python-memcached
